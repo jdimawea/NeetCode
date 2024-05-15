@@ -1,0 +1,83 @@
+# Most common array operations (Reading, Deletion, Insertion)
+
+
+# ---------- Reading from an array ----------
+
+# initialize myArray
+myArray = [1, 3, 5]
+# access an arbitrary element, where i is the index of the desired value
+print(myArray[0]) # Outputs: 1
+
+# Traversing through an array O(n)
+for i in range(len(myArray)): # range(5) Outputs: 0, 1, 2, 3, 4
+    print(myArray[i])
+
+# Or
+
+i = 0
+while i < len(myArray):
+    print(myArray[i])
+    i += 1
+
+
+# ---------- Deleting from an array ----------
+
+# Remove from the last position in the array if the array
+# is not empty (i.e. length is non-zero)
+def removeEnd(arr, length):
+    if length > 0:
+        # Overwrite last element with some default value.
+        # We would also consider the length to be decreased by 1.
+        arr[length - 1] = 0
+
+
+# Remove value at index i before shifting elements to the left.
+# Assuming i is a valid index.
+def removeMiddle(arr, i, length):
+    # Shift starting from i + 1 to end. 
+    for index in range(i + 1, length):
+        arr[index - 1] = arr[index]
+    # No need to 'remove' arr[i], since we already shifted
+
+
+# ---------- Inserting in an array ----------
+
+# Inserting at the end of the array 0(1)
+# Insert n into arr at the next open position.
+# Length is the number of 'real' values in arr, and capacity
+# is the size (aka memory allocated for the fixed size array).
+def insertEnd(arr, n, length, capacity):
+    if length < capacity:
+        arr[length] = n
+
+# Inserting at the ith index
+# Insert n into index i after shifting elements to the right.
+# Assuming i is a valid index and arr is not full. 
+def insertMiddle(arr, i, n, length):
+    # Shift starting from the end to i.
+    for index in range(length - 1, i - 1, - 1):
+        arr[index + 1] = arr[index]
+
+    # Insert at i
+    arr[i] = n
+
+
+
+myArray = [1, 2, 3, 4, 5]
+length = len(myArray) - 1
+
+removeMiddle(myArray, 2, length)
+removeEnd(myArray, length)
+print(myArray)
+
+myArray = [1, 2, 3, 4, 5, 0]
+length = len(myArray) - 1
+
+insertEnd(myArray, 10, length, 10)
+print(myArray)
+
+myArray = [1, 2, 3, 4, 5, 0]
+length = len(myArray) - 1
+
+insertMiddle(myArray, 2, 69, length)
+print(myArray)
