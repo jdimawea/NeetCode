@@ -45,3 +45,23 @@ class DynamicArray:
     # O(1)
     def getCapacity(self) -> int:
         return self.capacity 
+    
+if __name__ == "__main__":
+
+    # Creating a DynamicArray with initial capacity of 4
+    dynamic_array = DynamicArray(4)
+
+    # Inserting elements into the array
+    dynamic_array.pushback(1)
+    dynamic_array.pushback(2)
+    dynamic_array.pushback(3)
+    dynamic_array.pushback(4)
+
+    print(f'Array contents {[dynamic_array.get(i) for i in range(dynamic_array.getSize())]}')
+    print(f'Current Size: {dynamic_array.getSize()}')
+    print(f'Current capacity: {dynamic_array.getCapacity()}')
+
+    # The array should resize here
+    dynamic_array.pushback(5)
+    print(f'Array contents: {[dynamic_array.get(i) for i in range(dynamic_array.getSize())]}')
+    print(f'Current capacity: {dynamic_array.getCapacity()}')
